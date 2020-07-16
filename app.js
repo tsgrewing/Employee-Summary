@@ -15,74 +15,8 @@ let employeeList = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-class Employee {
-    constructor(name, employeeId, email){
-        this._name = name;
-        this._employeeId;
-        this._email;
-    }
 
-    getName() {
-        return this._name;
-    }
 
-    getId() {
-        return this._employeeId;
-    }
-
-    getEmail() {
-        return this._email;
-    }
-
-    getRole () {
-        return ("Employee")
-    }
-};
-
-class Manager extends Employee {
-    constructor(name, employeeId, email, officeNumber) {
-        super(name, employeeId, email);
-        this._officeNumber = officeNumber;
-    }
-    
-    getOffice() {
-        return this._officeNumber;
-    }
-
-    getRole() {
-        return ("Manager");
-    }
-}
-
-class Engineer extends Employee {
-    constructor(name, employeeId, email, github) {
-        super(name, employeeId, email);
-        this._github = github;
-    }
-    
-    getGithub() {
-        return this._github;
-    }
-
-    getRole() {
-        return ("Engineer");
-    }
-}
-
-class Intern extends Employee {
-    constructor(name, employeeId, email, school) {
-        super(name, employeeId, email);
-        this._school = school;
-    }
-    
-    getSchool() {
-        return this._school;
-    }
-
-    getRole() {
-        return ("Intern");
-    }
-}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
