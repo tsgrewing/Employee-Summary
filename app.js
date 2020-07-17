@@ -11,6 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 let employeeList = [];
+let renderedPage = '';
 
 questions = [
         {
@@ -69,15 +70,15 @@ function promptUser() {
         let id = answers.id;
         let role = answers.role;
         if (role === 'Manager') {
-            let name = new Manager(name, id, email, role);
+            var newEmployee = new Manager(name, id, email, role);
         }
         else if (role === 'Engineer') {
-            let name = new Engineer(name, id, email, role);
+            var newEmployee = new Engineer(name, id, email, role);
         }
         else {
-            let name = new Intern(name, id, email, role);
-
-        employeeList.push(name);
+            var newEmployee = new Intern(name, id, email, role);
+        }
+        employeeList.push(newEmployee);
         addAnother();
     });
 };
@@ -96,7 +97,7 @@ function addAnother () {
             promptUser();
         }
         else {
-            render(employeeList);
+            writeHTML(render(employeeList));
         }
     })
 }
@@ -104,4 +105,11 @@ function addAnother () {
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
 // `output` folder. You can use the variable `outputPath` above target this location.
-
+function writeHTML(template) {
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFileSync(outputPath, template);
+}
+// Run the program, wait for a response from the user and then write the page once the render function returns the rendered html
+promptUser();
