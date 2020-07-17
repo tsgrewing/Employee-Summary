@@ -74,12 +74,9 @@ function promptUser() {
         else if (role === 'Engineer') {
             let name = new Engineer(name, id, email, role);
         }
-        else if (role === 'Intern') {
-            let name = new Intern(name, id, email, role);
-        }
         else {
-            let name = new Employee (name, id, email, role);
-        }
+            let name = new Intern(name, id, email, role);
+
         employeeList.push(name);
         addAnother();
     });
