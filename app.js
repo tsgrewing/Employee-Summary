@@ -58,18 +58,12 @@ questions = [
         when: function (answers) {
             return answers.role === 'Intern'
             }
-        },
-        {
-        type: "confirm", 
-        message: "Would you like to add another employee?",
-        name: "add",
-        default: true
         }
 ];
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 function promptUser() {
-    return (inquirer.prompt(questions).then(answers => {
+    return inquirer.prompt(questions).then(answers => {
         let name = answers.name;
         let email = answers.email;
         let id = answers.id;
@@ -84,7 +78,21 @@ function promptUser() {
             var newEmployee = new Intern(name, id, email, answers.school);
         }
         employeeList.push(newEmployee);
-    })).then(answers => {
+        addAnother();
+    });
+    
+};
+
+// Prompt user to add another employee
+function addAnother () {
+    inquirer.prompt(
+        {
+        type: "confirm", 
+        message: "Would you like to add another employee?",
+        name: "add",
+        default: true
+        }
+    ).then(answers => {
         if (answers.add) {
             promptUser();
         }
@@ -92,26 +100,7 @@ function promptUser() {
             writeHTML(render(employeeList));
         }
     })
-};
-
-// Prompt user to add another employee
-// function addAnother () {
-//     inquirer.prompt(
-//         {
-//         type: "confirm", 
-//         message: "Would you like to add another employee?",
-//         name: "add",
-//         default: true
-//         }
-//     ).then(answers => {
-//         if (answers.add) {
-//             promptUser();
-//         }
-//         else {
-//             writeHTML(render(employeeList));
-//         }
-//     })
-// }
+}
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
