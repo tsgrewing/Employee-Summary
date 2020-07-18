@@ -23,8 +23,9 @@
   Clone the repo, then run npm install from the command line.
 
   ## Demo
-  ![Demo](/assets/demo.gif)
-  ![Demo](/assets/demopng.png)
+  ![Demo](/demo/demogif.gif)
+  ![Demo](/demo/htmldemo.png)
+  ![Demo of Tests](/demo/testresults.png)
   
   ## Usage
    After installation run app.js and answer the questions. 
